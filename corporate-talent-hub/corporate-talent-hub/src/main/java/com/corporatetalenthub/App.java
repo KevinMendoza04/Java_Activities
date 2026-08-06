@@ -5,14 +5,15 @@ import com.corporatetalenthub.modelo.EmpresaRecord;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
+
 public class App {
 
     public static void main(String[] args) {
         String encabezado = """
-                =====================================
+                
                      CORPORATE TALENT HUB
                    Gestión del talento humano
-                =====================================
+                
                 """;
         System.out.println(encabezado);
 
@@ -35,7 +36,9 @@ public class App {
 
         compararReferencias();
         ejecutarLaboratorioDeNulos(empleado);
+
         ejecutarMenuPrincipal(empleado);
+
     }
 
     private static Empleado crearEmpleadoDePrueba() {

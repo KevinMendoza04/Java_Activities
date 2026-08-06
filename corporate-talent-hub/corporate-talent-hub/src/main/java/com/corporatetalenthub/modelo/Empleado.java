@@ -114,7 +114,7 @@ public class Empleado {
                 ", bonoMensual=" + bonoMensual +
                 '}';
     }
-    
+   
     public String obtenerCategoriaSalarial() {
     // Java 17/21: Switch Expression con sintaxis de flecha ->
     // Ventaja: cada rama retorna directamente, no hay riesgo de fall-through

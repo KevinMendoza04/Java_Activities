@@ -11,6 +11,6 @@ package com.mycompany.gestionproductos;
 public class GestionProductos {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
     }
 }

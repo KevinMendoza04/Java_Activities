@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class ProductoController {
 
-    // El controller no habla directo con el repository: siempre pasa por service.
+    
     private ProductoService service = new ProductoService();
 
     public void registrarProducto(Producto producto) {

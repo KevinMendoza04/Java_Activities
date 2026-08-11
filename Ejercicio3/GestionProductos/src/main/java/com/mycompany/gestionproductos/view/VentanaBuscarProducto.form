@@ -33,7 +33,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnRegresar" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="txtCodigoBuscar" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCodigoBuscar" alignment="0" min="-2" pref="196" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="41" max="32767" attributes="0"/>
           </Group>

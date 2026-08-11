@@ -36,21 +36,19 @@
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtCostoEnvio" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="1" groupAlignment="1" attributes="0">
-                      <Component id="txtNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtPrecioBase" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtCodigo" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtCantidad" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtPeso" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtTamanioArchivo" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtFormato" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="txtPrecioBase" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtCantidad" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtPeso" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtTamanioArchivo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtFormato" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtNombre" alignment="0" pref="138" max="32767" attributes="0"/>
+                  <Component id="txtCodigo" max="32767" attributes="0"/>
+                  <Component id="txtCostoEnvio" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="cmbTipo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="78" max="32767" attributes="0"/>
+              <EmptySpace pref="99" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
@@ -120,24 +118,15 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="txtCodigo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombre">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPrecioBase">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCantidad">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbTipo">
       <Properties>
@@ -157,28 +146,16 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPeso">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCostoEnvio">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTamanioArchivo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtFormato">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnLimpiar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton1"/>
+        <Property name="text" type="java.lang.String" value="Limpiar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
@@ -186,7 +163,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnRegistrar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton1"/>
+        <Property name="text" type="java.lang.String" value="Registrar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarActionPerformed"/>
@@ -194,7 +171,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnRegresar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton1"/>
+        <Property name="text" type="java.lang.String" value="Regresar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegresarActionPerformed"/>

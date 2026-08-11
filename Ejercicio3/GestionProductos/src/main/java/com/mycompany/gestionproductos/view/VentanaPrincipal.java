@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.gestionproductos.view;
-
+import com.mycompany.gestionproductos.model.Producto;
+import com.mycompany.gestionproductos.model.ProductoFisico;
+import com.mycompany.gestionproductos.model.ProductoDigital;
+import javax.swing.JOptionPane;
 /**
  *
  * @author kem
@@ -11,10 +14,12 @@ package com.mycompany.gestionproductos.view;
 public class VentanaPrincipal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName());
+    private com.mycompany.gestionproductos.controller.ProductoController controller;
 
-    /**
-     * Creates new form VentanaPrincipal
-     */
+    public VentanaPrincipal(com.mycompany.gestionproductos.controller.ProductoController controller) {
+        this.controller = controller;
+        initComponents();
+    }
     public VentanaPrincipal() {
         initComponents();
     }
@@ -46,12 +51,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton2.addActionListener(this::jButton2ActionPerformed);
 
         jButton3.setText("Buscar Productos");
+        jButton3.addActionListener(this::jButton3ActionPerformed);
 
         jButton4.setText("Actualizar Productos");
+        jButton4.addActionListener(this::jButton4ActionPerformed);
 
         jButton5.setText("Eliminar Producto");
+        jButton5.addActionListener(this::jButton5ActionPerformed);
 
         jButton6.setText("Ver Resumen del Inventario");
+        jButton6.addActionListener(this::jButton6ActionPerformed);
 
         jButton7.setText("Salir");
         jButton7.addActionListener(this::jButton7ActionPerformed);
@@ -100,7 +109,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new VentanaRegistrarProducto().setVisible(true);
+        new VentanaRegistrarProducto(controller).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -109,35 +118,92 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new VentanaListarProductos().setVisible(true);
+        new VentanaListarProductos(controller).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        new VentanaBuscarProducto(controller).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String codigo = JOptionPane.showInputDialog("Ingrese el código del producto a actualizar:");
+    if (codigo == null) {
+        return; // el usuario canceló el diálogo
+    }
+
+    try {
+        Producto producto = controller.buscarProducto(codigo);
+
+        String nuevoNombre = JOptionPane.showInputDialog("Nuevo nombre:", producto.getNombre());
+        double nuevoPrecio = Double.parseDouble(
+                JOptionPane.showInputDialog("Nuevo precio base:", producto.getPrecioBase()));
+        int nuevaCantidad = Integer.parseInt(
+                JOptionPane.showInputDialog("Nueva cantidad disponible:", producto.getCantidadDisponible()));
+
+        producto.setNombre(nuevoNombre);
+        producto.setPrecioBase(nuevoPrecio);
+        producto.setCantidadDisponible(nuevaCantidad);
+
+        // Si es físico o digital, también pedimos sus atributos específicos.
+        if (producto instanceof ProductoFisico fisico) {
+            double nuevoPeso = Double.parseDouble(
+                    JOptionPane.showInputDialog("Nuevo peso:", fisico.getPeso()));
+            double nuevoCostoEnvio = Double.parseDouble(
+                    JOptionPane.showInputDialog("Nuevo costo de envío:", fisico.getCostoEnvio()));
+            fisico.setPeso(nuevoPeso);
+            fisico.setCostoEnvio(nuevoCostoEnvio);
+        } else if (producto instanceof ProductoDigital digital) {
+            double nuevoTamanio = Double.parseDouble(
+                    JOptionPane.showInputDialog("Nuevo tamaño de archivo:", digital.getTamanioArchivo()));
+            String nuevoFormato = JOptionPane.showInputDialog("Nuevo formato:", digital.getFormato());
+            digital.setTamanioArchivo(nuevoTamanio);
+            digital.setFormato(nuevoFormato);
+        }
+
+        controller.actualizarProducto(producto);
+        JOptionPane.showMessageDialog(null, "Producto actualizado con éxito");
+
+    } catch (IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(null, e.getMessage());
+    }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        String codigo = JOptionPane.showInputDialog("Ingrese el código del producto a eliminar:");
+    if (codigo == null) {
+        return;
+    }
+
+    int confirmacion = JOptionPane.showConfirmDialog(null,
+            "¿Está seguro de eliminar el producto con código " + codigo + "?",
+            "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+
+    if (confirmacion == JOptionPane.YES_OPTION) {
+        try {
+            controller.eliminarProducto(codigo);
+            JOptionPane.showMessageDialog(null, "Producto eliminado con éxito");
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        int cantidad = controller.obtenerCantidadProductos();
+    double valorTotal = controller.calcularValorTotalInventario();
+
+    String resumen = "========== RESUMEN DEL INVENTARIO ==========\n"
+            + "Cantidad de productos registrados: " + cantidad + "\n"
+            + "Valor total del inventario: " + valorTotal;
+
+    JOptionPane.showMessageDialog(null, resumen);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new VentanaPrincipal().setVisible(true));
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

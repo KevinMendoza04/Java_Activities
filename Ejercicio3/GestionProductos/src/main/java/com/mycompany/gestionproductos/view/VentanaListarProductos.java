@@ -9,13 +9,19 @@ import com.mycompany.gestionproductos.model.Producto;
 import com.mycompany.gestionproductos.model.ProductoFisico;
 import com.mycompany.gestionproductos.model.ProductoDigital;
 import javax.swing.table.DefaultTableModel;
+
+
 public class VentanaListarProductos extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaListarProductos.class.getName());
-    private ProductoController controller = new ProductoController();
-    /**
-     * Creates new form VentanaListarProductos
-     */
+    private ProductoController controller;
+
+    public VentanaListarProductos(ProductoController controller) {
+        this.controller = controller;
+        initComponents();
+        cargarDatosEnTabla();
+    }
+
     public VentanaListarProductos() {
         initComponents();
         cargarDatosEnTabla();
@@ -103,12 +109,6 @@ public class VentanaListarProductos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> new VentanaListarProductos().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;

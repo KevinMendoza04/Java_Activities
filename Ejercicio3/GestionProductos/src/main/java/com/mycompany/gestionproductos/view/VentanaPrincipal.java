@@ -43,6 +43,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setText("Listar Productos");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         jButton3.setText("Buscar Productos");
 
@@ -106,6 +107,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new VentanaListarProductos().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

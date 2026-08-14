@@ -96,6 +96,10 @@ public class Empleado {
     public double getBonoMensual() {
         return bonoMensual;
     }
+    
+    public float getPuntajeTest() {
+        return puntajeTest;
+    }
 
     @Override
     public String toString() {
@@ -130,5 +134,5 @@ public class Empleado {
         case 4, 5 -> "Categoría Alta";
         default -> "Categoría Ejecutiva";
     };
-}
+    }
 }

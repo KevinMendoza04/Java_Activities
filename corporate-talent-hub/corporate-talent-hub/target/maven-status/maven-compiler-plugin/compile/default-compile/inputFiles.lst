@@ -1,4 +1,10 @@
 /home/kem/Escritorio/EJERCICIOS JAVA/corporate-talent-hub/corporate-talent-hub/src/main/java/com/corporatetalenthub/App.java
 /home/kem/Escritorio/EJERCICIOS JAVA/corporate-talent-hub/corporate-talent-hub/src/main/java/com/corporatetalenthub/documentacion/NotasArquitectura.java
+/home/kem/Escritorio/EJERCICIOS JAVA/corporate-talent-hub/corporate-talent-hub/src/main/java/com/corporatetalenthub/modelo/ConsultorExterno.java
+/home/kem/Escritorio/EJERCICIOS JAVA/corporate-talent-hub/corporate-talent-hub/src/main/java/com/corporatetalenthub/modelo/Desarrollador.java
+/home/kem/Escritorio/EJERCICIOS JAVA/corporate-talent-hub/corporate-talent-hub/src/main/java/com/corporatetalenthub/modelo/DesempeñoReport.java
 /home/kem/Escritorio/EJERCICIOS JAVA/corporate-talent-hub/corporate-talent-hub/src/main/java/com/corporatetalenthub/modelo/Empleado.java
 /home/kem/Escritorio/EJERCICIOS JAVA/corporate-talent-hub/corporate-talent-hub/src/main/java/com/corporatetalenthub/modelo/EmpresaRecord.java
+/home/kem/Escritorio/EJERCICIOS JAVA/corporate-talent-hub/corporate-talent-hub/src/main/java/com/corporatetalenthub/modelo/Gerente.java
+/home/kem/Escritorio/EJERCICIOS JAVA/corporate-talent-hub/corporate-talent-hub/src/main/java/com/corporatetalenthub/modelo/Persona.java
+/home/kem/Escritorio/EJERCICIOS JAVA/corporate-talent-hub/corporate-talent-hub/src/main/java/com/corporatetalenthub/modelo/Promocionable.java

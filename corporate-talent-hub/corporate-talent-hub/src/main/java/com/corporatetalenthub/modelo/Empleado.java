@@ -7,7 +7,7 @@ package com.corporatetalenthub.modelo;
  * getters, setter y métodos explícitamente. Esa verbosidad es útil cuando el
  * objeto necesita estado mutable, como bonoMensual o nombre.
  */
-public class Empleado {
+public sealed class Empleado extends Persona implements Promocionable permits Desarrollador, Gerente {
 
     // Los 8 tipos primitivos requeridos:
     private byte nivelAcceso;
@@ -40,6 +40,7 @@ public class Empleado {
             int edad,
             int idSede,
             double bonoMensual) {
+        super(nombre,edad);
         this.nivelAcceso = nivelAcceso;
         this.anioIngreso = anioIngreso;
         this.idEmpleado = idEmpleado;
@@ -62,6 +63,13 @@ public class Empleado {
         // 4. resta de ambos resultados
         return (salarioBase + (bonoMensual * 1.10))
                 - (salarioBase * 0.05);
+    }
+    
+    
+    @Override
+public double calcularBonoAscenso() {
+    // Bono del 15% del salario base por ascenso
+    return salarioBase * 0.15;
     }
 
     public boolean tieneBonoExtra() {

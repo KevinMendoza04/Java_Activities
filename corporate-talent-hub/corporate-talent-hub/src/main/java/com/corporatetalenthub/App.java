@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.corporatetalenthub.modelo.Persona;
+import com.corporatetalenthub.modelo.Desarrollador;
+import com.corporatetalenthub.modelo.Gerente;
+import com.corporatetalenthub.modelo.ConsultorExterno;
+import com.corporatetalenthub.modelo.Promocionable;
+import com.corporatetalenthub.modelo.DesempeñoReport;
 
 
 public class App {
@@ -30,7 +36,8 @@ public static void main(String[] args) {
                 1. Demo de POO basica
                 2. Gestionar empleados (menu interactivo)
                 3. Gestion dinamica de colecciones
-                4. Salir
+                4. Arquitectura POO avanzada          
+                5. Salir
                 ===================================
                 """);
         System.out.print("Seleccione una opcion: ");
@@ -48,10 +55,11 @@ public static void main(String[] args) {
             case 1 -> ejecutarDemoPoo();
             case 2 -> ejecutarMenuPrincipal(crearEmpleadoDePrueba());
             case 3 -> gestionarColeccionesDinamicas();
-            case 4 -> System.out.println("Cerrando la aplicacion...");
+            case 4 -> demoArquitecturaPooAvanzada();
+            case 5 -> System.out.println("Cerrando la aplicacion...");
             default -> System.out.println("Opcion no valida.");
         }
-    } while (opcion != 4);
+    } while (opcion != 5);
 }
 
 private static void ejecutarDemoPoo() {
@@ -87,6 +95,44 @@ private static void ejecutarDemoPoo() {
     System.out.println("--- Laboratorio de valores nulos ---");
     ejecutarLaboratorioDeNulos(empleado);
 }    
+
+private static void demoArquitecturaPooAvanzada() {
+    Persona dev = new Desarrollador((byte) 3, (short) 2024, 201, 1111111111L,
+            92.5f, 3_500_000, 'I', true, "Juan Code", 28, 1, 500_000, "Java");
+
+    Persona gerente = new Gerente((byte) 5, (short) 2023, 202, 2222222222L,
+            88.0f, 5_000_000, 'I', true, "Maria Lead", 35, 2, 800_000, 2_000_000);
+
+    Persona consultor = new ConsultorExterno("Pedro External", 40, 250_000);
+
+    System.out.println("========= ARQUITECTURA POO AVANZADA =========");
+    procesarPersona(dev);
+    procesarPersona(gerente);
+    procesarPersona(consultor);
+
+    // Reportes
+    if (dev instanceof Empleado emp && emp instanceof Promocionable) {
+        DesempeñoReport report = new DesempeñoReport(emp.getIdEmpleado(), 92.5, "Excelente desempeño");
+        System.out.println("Reporte: " + report);
+    }
+}
+
+private static void procesarPersona(Persona p) {
+    // Pattern Matching: no necesita casting manual.
+    if (p instanceof Desarrollador des) {
+        System.out.println(des.getNombre() + " (Dev) - Lenguaje: " + des.getLenguajePrincipal());
+        if (des instanceof Promocionable) {
+            System.out.println("  Bono ascenso: " + des.calcularBonoAscenso());
+        }
+    } else if (p instanceof Gerente ger) {
+        System.out.println(ger.getNombre() + " (Gerente) - Presupuesto: " + ger.getPresupuestoMensual());
+        if (ger instanceof Promocionable) {
+            System.out.println("  Bono ascenso: " + ger.calcularBonoAscenso());
+        }
+    } else if (p instanceof ConsultorExterno cons) {
+        System.out.println(cons.getNombre() + " (Consultor) - Tarifa: $" + cons.getTarifaDiaria() + "/día");
+    }
+}
         
         private static void gestionarColeccionesDinamicas() {
     // ===== TASK 1: ArrayList y HashMap (Legacy 8/11) =====

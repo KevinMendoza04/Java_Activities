@@ -1,4 +1,4 @@
-package com.corporatetalenthub.modelo;
+package com.riwi.talent.model;
 
 public final class Gerente extends Empleado {
     private double presupuestoMensual;

@@ -10,4 +10,15 @@
         <maven.compiler.release>21</maven.compiler.release>
         <exec.mainClass>com.corporatetalenthub.App</exec.mainClass>
     </properties>
+
+    <dependencies>
+        <!-- H2: base de datos embebida que funciona sin instalar un servidor externo.
+             Ideal para demostrar JDBC sin infraestructura adicional.
+             Los datos persisten en el archivo local ./talent_hub.mv.db entre ejecuciones. -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.2.224</version>
+        </dependency>
+    </dependencies>
 </project>
